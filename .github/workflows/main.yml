@@ -3,6 +3,9 @@ name: Main using gh-release
 
 on: push
 
+permissions:
+  contents: write   # This is required to create/push the new git tag
+
 jobs:
   build:
     runs-on: ubuntu-latest
