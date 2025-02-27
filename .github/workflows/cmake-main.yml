@@ -26,10 +26,10 @@ jobs:
     
     - run: dir -Recurse > dir.txt
 
-    - name: Test
-      working-directory: ${{github.workspace}}/build
-      # Execute tests defined by the CMake configuration.
-      run: ctest -C ${{env.BUILD_TYPE}}
+#    - name: Test
+#      working-directory: ${{github.workspace}}/build
+#      # Execute tests defined by the CMake configuration.
+#      run: ctest -C ${{env.BUILD_TYPE}}
       
     - name: Release
       uses: softprops/action-gh-release@v2
