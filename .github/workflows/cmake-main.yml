@@ -39,8 +39,8 @@ jobs:
       uses: svenstaro/upload-release-action@v2
       with:
         file: build/release/hello.exe
-        asset_name: latest-hello.exe
-        overwrite: true
+        #asset_name: latest-hello.exe
+        #overwrite: true
         body: "This is my release text"
 
     - run: echo ${{ github.sha }} > Release.txt
