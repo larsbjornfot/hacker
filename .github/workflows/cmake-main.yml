@@ -45,13 +45,15 @@ jobs:
 
     - run: echo ${{ github.sha }} > Release.txt
     
-    - uses: softprops/action-gh-release@v2
-      #if: startsWith(github.ref, 'refs/tags/')
+# https://github.com/marketplace/actions/easy-zip-files
+    - uses: vimtor/action-zip@v1.2
       with:
-        files: Release.txt
+        files: dist/ Release.txt
+        recursive: false
+        dest: result.zip
         
-#    - name: Release
-#      uses: softprops/action-gh-release@v2
-#      if: startsWith(github.ref, 'refs/tags/')
-#      with:
-#        files: dir.txt ls.txt build/release/hello.exe
+    - name: Release
+      uses: softprops/action-gh-release@v2
+      if: startsWith(github.ref, 'refs/tags/')
+      with:
+        files: build/release/hello.exe
