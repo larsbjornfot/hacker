@@ -26,7 +26,7 @@ jobs:
       # Build your program with the given configuration
       run: cmake --build ${{github.workspace}}/build --config ${{env.BUILD_TYPE}}
     
-    - run: dir -Recurse > dir.txt
+    - run: dir -Recurse
 
 #    - name: Test
 #      working-directory: ${{github.workspace}}/build
@@ -39,7 +39,7 @@ jobs:
       uses: svenstaro/upload-release-action@v2
       with:
         file: build/release/hello.exe
-        asset_name: mything
+        asset_name: latest-hello.exe
         overwrite: true
         body: "This is my release text"
 
@@ -48,7 +48,7 @@ jobs:
 # https://github.com/marketplace/actions/easy-zip-files
     - uses: vimtor/action-zip@v1.2
       with:
-        files: build/ Release.txt
+        files: build/release Release.txt
         recursive: false
         dest: result.zip
 
