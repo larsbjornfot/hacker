@@ -12,6 +12,8 @@ env:
 jobs:
   build:
     runs-on: windows-latest
+    permissions:
+      contents: write
 
     steps:
     - uses: actions/checkout@v4
@@ -46,15 +48,21 @@ jobs:
 # https://github.com/marketplace/actions/easy-zip-files
     - uses: vimtor/action-zip@v1.2
       with:
-        files: dist/ Release.txt
+        files: build/ Release.txt
         recursive: false
         dest: result.zip
+
+    - uses: vimtor/action-zip@v1.2
+      with:
+        files: build/release/hello.exe
+        recursive: false
+        dest: result2.zip
 
 # Troubleshoot
     - uses: actions/upload-artifact@v4
       with:
         name: my-artifact
-        path: ${{github.workspace}}/result.zip
+        path: ${{github.workspace}}/result*.zip
    
     - name: Release
       uses: softprops/action-gh-release@v2
